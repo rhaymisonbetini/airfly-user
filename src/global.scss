@@ -57,10 +57,10 @@ label {
     color: #242424;
 }
 
-ion-tab-bar{
+ion-tab-bar {
     background-color: #929292;
     color: #fff !important;
-    ion-label{
+    ion-label {
         color: #fff;
         font-size: 15px;
     }
@@ -73,6 +73,12 @@ ion-tab-button {
     background-color: #929292;
 }
 
+.ion-padding {
+    --padding-start: 0 !important;
+    --padding-end: 0 !important;
+    --padding-top: 0 !important;
+    --padding-bottom: 0 !important;
+}
 
 .remove-opacity {
     opacity: 1 !important;

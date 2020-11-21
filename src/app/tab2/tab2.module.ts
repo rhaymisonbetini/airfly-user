@@ -10,6 +10,7 @@ import { Tab2PageRoutingModule } from './tab2-routing.module';
 import { TicketService } from '../services/ticket.service';
 import { ToastProvider } from '../providers/toast';
 import { LoadingProvider } from '../providers/loading';
+import { MyModalPageModule } from '../modals/my-modal/my-modal.module';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { LoadingProvider } from '../providers/loading';
     CommonModule,
     FormsModule,
     ExploreContainerComponentModule,
-    Tab2PageRoutingModule
+    Tab2PageRoutingModule,
+    MyModalPageModule
   ],
   declarations: [Tab2Page],
   providers:[

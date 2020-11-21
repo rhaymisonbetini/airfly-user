@@ -1,0 +1,17 @@
+<ion-content class="ion-padding">
+
+  <div id="main" [ngStyle]="{'background-image': 'url('+background+')'}">
+    <div class="qrcode">
+      <img src="../../../assets/img/qrcode.png" alt="">
+    </div>
+  </div>
+
+  <div id="information" *ngIf="ticket">
+    <h5>Aeronave: {{ticket.aeronave}}</h5>
+    <h5>Origem: {{ticket.origem}}</h5>
+    <h5>Destino: {{ticket.destino}}</h5>
+    <h5>Horário: {{ticket.hora_viagem}}</h5>
+  </div>
+
+  <ion-button expand="full" color="dark" id="close" (click)="closeModal()">Sair</ion-button>
+</ion-content>

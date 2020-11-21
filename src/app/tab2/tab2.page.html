@@ -9,8 +9,11 @@
 
       <ng-container *ngIf="tickets && tickets.length >0">
 
-        <ion-col *ngFor="let ticket of tickets; index as i"
-          [ngStyle]="{'background-image': 'url('+ticket.imagem_logo+')'}" class="tickets" size="12">
+        <ion-col 
+          *ngFor="let ticket of tickets; index as i"
+          (click)="openModal(ticket.id)"
+          [ngStyle]="{'background-image': 'url('+ticket.imagem_logo+')'}" 
+          class="tickets" size="12">
 
           <h5>De: {{ticket.origem}}</h5>
           <h5>Para: {{ticket.destino}}</h5>

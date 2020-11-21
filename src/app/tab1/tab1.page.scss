@@ -1,5 +1,5 @@
 ion-content {
-    --background: whitesmoke;
+    --background: #000000;
 }
 
 .photo {
@@ -12,7 +12,6 @@ ion-content {
     position: fixed;
     top: 10%;
     left: 10%;
-
 
     -webkit-box-shadow: 0 0 20px whitesmoke;
     -moz-box-shadow: 0 0 20px whitesmoke;
@@ -36,12 +35,16 @@ ion-content {
     border-top-left-radius: 70%;
     background-color: #000000;
     margin-top: -4%;
+    opacity: 0;
+
+    background-repeat: no-repeat;
+    background-position: contain ;
 
     .main {
         color: #ffffff;
         position: relative;
         left: 10%;
-        top: 40%;
+        top: 45%;
     }
 
     .travels {
@@ -51,7 +54,7 @@ ion-content {
         flex-direction: row;
         justify-content: space-evenly;
         position: relative;
-        top: 50%;
+        top: 53%;
 
         .blocote {
             display: flex;
@@ -88,10 +91,3 @@ ion-content {
     }
 }
 
-.glow {
-    font-size: 20px;
-    color: #fff;
-    -webkit-animation: glow 1s ease-in-out infinite alternate;
-    -moz-animation: glow 1s ease-in-out infinite alternate;
-    animation: glow 1s ease-in-out infinite alternate;
-}

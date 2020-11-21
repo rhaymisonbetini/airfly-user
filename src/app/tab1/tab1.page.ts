@@ -16,9 +16,11 @@ const ws = Ws('ws://localhost:3333')
 export class Tab1Page implements OnInit {
 
   private chat
-  public photo: string;
-  public name: string;
-  public email: string;
+  public photo: string = sessionStorage.getItem('photo');
+  public name: string = sessionStorage.getItem('name');
+  public email: string = sessionStorage.getItem('email');
+
+  public background:string = '../assets/img/index.jpg'
 
   constructor() {
     ws.connect()
@@ -27,16 +29,12 @@ export class Tab1Page implements OnInit {
   ngOnInit() {
     this.chat = ws.subscribe('chat')
     this.chatOnReady()
-    this.setVaiables()
+
+    setTimeout(() =>{
+      document.getElementById('profile').classList.add('remove-opacity')
+    },500)
 
   }
-
-  setVaiables() {
-    this.photo = sessionStorage.getItem('photo');
-    this.name = sessionStorage.getItem('name');
-    this.email = sessionStorage.getItem('email');
-  }
-
 
   //socket functions
   chatOnReady() {

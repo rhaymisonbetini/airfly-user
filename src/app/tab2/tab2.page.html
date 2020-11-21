@@ -1,17 +1,25 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 2
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <ion-grid id="main">
+    <ion-row>
+      <ion-col class="title" size="12">
+        <h5>Minhas viagens</h5>
+        <img src="../../assets/img/logo.png" alt="">
+      </ion-col>
+
+      <ng-container *ngIf="tickets && tickets.length >0">
+
+        <ion-col *ngFor="let ticket of tickets; index as i"
+          [ngStyle]="{'background-image': 'url('+ticket.imagem_logo+')'}" class="tickets" size="12">
+
+          <h5>De: {{ticket.origem}}</h5>
+          <h5>Para: {{ticket.destino}}</h5>
+
+        </ion-col>
+
+      </ng-container>
+
+    </ion-row>
+  </ion-grid>
+
 </ion-content>

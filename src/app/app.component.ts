@@ -24,15 +24,15 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
 
-      let token = sessionStorage.getItem('token');
-      let id = sessionStorage.getItem('id')
-      let email = sessionStorage.getItem('email')
+      // let token = sessionStorage.getItem('token');
+      // let id = sessionStorage.getItem('id')
+      // let email = sessionStorage.getItem('email')
 
-      if (!token || !id || !email) {
-        this.navController.navigateRoot('login');
-      }else{
-        this.navController.navigateRoot('');
-      }
+      // if (!token || !id || !email) {
+      //   this.navController.navigateRoot('login');
+      // }else{
+      //   this.navController.navigateRoot('');
+      // }
 
     });
   }

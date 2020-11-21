@@ -1,0 +1,37 @@
+<ion-content>
+
+  <div id="login">
+    <form action="" [formGroup]="loginForm">
+      <ion-item>
+        <ion-label position="stacked">E-mail</ion-label>
+        <ion-input type="email" formControlName="email"></ion-input>
+      </ion-item>
+
+      <app-message-erro-validacao *ngIf="loginForm.controls['email'].errors?.required 
+      && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched)"
+        texto="O E-mail de usuário é obrigatório">
+        >
+      </app-message-erro-validacao>
+
+
+      <ion-item>
+        <ion-label position="stacked">Password</ion-label>
+        <ion-input type="password" formControlName="password"></ion-input>
+      </ion-item>
+
+      <app-message-erro-validacao *ngIf="loginForm.controls['password'].errors?.required 
+      && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)"
+        texto="A senha é usuário é obrigatória">
+        >
+      </app-message-erro-validacao>
+
+
+      <ion-button (click)="login()" [disabled]="loginForm.invalid" color="dark" expand="full">Login</ion-button>
+    </form>
+
+  </div>
+  <div id="logo">
+    <img src="../../assets/img/logo.png" alt="">
+  </div>
+
+</ion-content>

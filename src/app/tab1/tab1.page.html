@@ -1,16 +1,43 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div id="profile">
 
+    <div class="photo">
+      <img class="pic" [src]="photo" alt="">
+      <img class="logo" src="../../assets/img/logo.png" alt="">
+    </div>
+
+    <div class="main">
+      <h5 class="glow">
+        <strong>
+          <ion-icon class="glow" name="person-circle"></ion-icon>
+          Usuário:
+        </strong>
+        {{name}}
+      </h5>
+      <h5 class="glow">
+        <strong>
+          <ion-icon class="glow" name="mail"></ion-icon>
+          Email:
+        </strong>
+        {{email}}
+      </h5>
+
+    </div>
+
+    <div class="travels">
+
+      <div class="blocote">
+        <ion-icon name="ticket"></ion-icon>
+        <h5>Tickets: <br />
+          50
+        </h5>
+      </div>
+
+      <div class="blocote ">
+        <ion-icon name="airplane"></ion-icon>
+        <h5>Viagens:<br />46</h5>
+      </div>
+    </div>
+
+  </div>
 </ion-content>

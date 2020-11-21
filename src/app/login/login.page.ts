@@ -38,7 +38,7 @@ export class LoginPage implements OnInit {
     this.authService.login(this.loginForm.getRawValue()).subscribe((res: any) => {
       this.loadingProvider.loadingDismiss();
       if (res.user && res.token) {
-        sessionStorage.setItem('name', res.user.name);
+        sessionStorage.setItem('name', res.user.username);
         sessionStorage.setItem('email', res.user.email);
         sessionStorage.setItem('photo', res.user.photo);
         sessionStorage.setItem('id', res.user.id);

@@ -56,3 +56,19 @@ label {
     margin-left: 35px;
     color: #242424;
 }
+
+ion-tab-bar{
+    background-color: #929292;
+    color: #fff !important;
+    ion-label{
+        color: #fff;
+        font-size: 15px;
+    }
+}
+
+ion-tab-button {
+    ion-icon {
+        color: #fff !important;
+    }
+    background-color: #929292;
+}

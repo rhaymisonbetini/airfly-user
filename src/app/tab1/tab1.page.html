@@ -1,12 +1,12 @@
 <ion-content [fullscreen]="true">
 
+  <!-- [ngStyle]="{'background-image': 'url('+background+')'}" -->
   <div id="profile" 
-  [ngStyle]="{'background-image': 'url('+background+')'}"
   *ngIf="photo && name && email">
 
     <div class="photo">
       <img class="pic" [src]="photo" alt="">
-      <!-- <img class="logo" src="../../assets/img/logo.png" alt=""> -->
+      <img class="logo" src="../../assets/img/user-logo.png" alt="">
     </div>
 
     <div class="main">
@@ -31,13 +31,15 @@
       <div class="blocote">
         <ion-icon name="ticket"></ion-icon>
         <h5>Tickets: <br />
-          50
+          {{tots.free}}
         </h5>
       </div>
 
       <div class="blocote ">
         <ion-icon name="airplane"></ion-icon>
-        <h5>Viagens:<br />46</h5>
+        <h5>Viagens:<br />
+          {{tots.total}}
+        </h5>
       </div>
     </div>
 

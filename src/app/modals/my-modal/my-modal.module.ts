@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 
 import { MyModalPageRoutingModule } from './my-modal-routing.module';
 
@@ -15,6 +16,9 @@ import { MyModalPage } from './my-modal.page';
     IonicModule,
     MyModalPageRoutingModule
   ],
-  declarations: [MyModalPage]
+  declarations: [MyModalPage],
+  providers: [
+    BarcodeScanner
+  ]
 })
-export class MyModalPageModule {}
+export class MyModalPageModule { }

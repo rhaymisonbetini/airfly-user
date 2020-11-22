@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { MyModalPage } from '../modals/my-modal/my-modal.page';
-import { LoadingProvider } from '../providers/loading';
 import { ToastProvider } from '../providers/toast';
 import { TicketService } from '../services/ticket.service';
 
@@ -16,7 +15,6 @@ export class Tab2Page implements OnInit {
   public dataReturned:any;
 
   constructor(
-    private loadingProvider: LoadingProvider,
     private toastProvider: ToastProvider,
     private ticketService: TicketService,
     private modalController: ModalController,

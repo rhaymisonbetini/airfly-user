@@ -1,13 +1,13 @@
 ion-content {
-    --background: #000000;
+    --background: var(--ion-color-primary);
 
     .title {
         color: #fff;
         text-align: center;
 
         img {
-            width: 100px;
-            height: 100px;
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
         }
     }

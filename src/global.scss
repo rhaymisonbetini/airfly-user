@@ -53,24 +53,23 @@ ion-item {
 
 label {
     font-size: 15px !important;
-    margin-left: 35px;
     color: #242424;
 }
 
 ion-tab-bar {
-    background-color: #929292;
+    background-color: #fff;
     color: #fff !important;
     ion-label {
-        color: #fff;
+        color:  var(--ion-color-primary) !important;
         font-size: 15px;
     }
 }
 
 ion-tab-button {
     ion-icon {
-        color: #fff !important;
+        color: var(--ion-color-primary) !important;
     }
-    background-color: #929292;
+    background-color: #fff;
 }
 
 .ion-padding {

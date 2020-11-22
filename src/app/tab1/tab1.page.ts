@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
-import "babel-polyfill";
-import Ws from '@adonisjs/websocket-client'
-
-const ws = Ws('ws://localhost:3333')
+import { TicketService } from '../services/ticket.service';
 
 
 @Component({
@@ -12,46 +8,33 @@ const ws = Ws('ws://localhost:3333')
   styleUrls: ['tab1.page.scss']
 })
 
-
 export class Tab1Page implements OnInit {
 
-  private chat
   public photo: string = sessionStorage.getItem('photo');
   public name: string = sessionStorage.getItem('name');
   public email: string = sessionStorage.getItem('email');
+  public background: string = '../assets/img/index.jpg'
 
-  public background:string = '../assets/img/index.jpg'
+  public tots: any = [];
 
-  constructor() {
-    ws.connect()
+  constructor(
+    private ticketService: TicketService
+  ) {
   }
 
   ngOnInit() {
-    this.chat = ws.subscribe('chat')
-    this.chatOnReady()
 
-    setTimeout(() =>{
-      document.getElementById('profile').classList.add('remove-opacity')
-    },500)
-
-  }
-
-  //socket functions
-  chatOnReady() {
-    this.chat.on('ready', () => {
-      this.chat.emit('message', 'hello')
+    this.ticketService.countTyTickets().subscribe((res: any) => {
+      this.tots = res;
+      console.log(res)
+    }, error => {
+      alert(JSON.stringify(error))
     })
+
+    setTimeout(() => {
+      document.getElementById('profile').classList.add('remove-opacity')
+    }, 500)
   }
-  // chat.on('error', (error) => {
-  //   console.log(error)
-  // })
-
-  // chat.on('message', function (message) {
-  //   console.log(message)
-  // })
-
-  // chat.on('close', () => {
-  // })
 
 
 }

@@ -7,8 +7,7 @@ import { TicketService } from 'src/app/services/ticket.service';
 
 import "babel-polyfill";
 import Ws from '@adonisjs/websocket-client'
-
-const ws = Ws('ws://localhost:3333')
+const ws = Ws('ws://86ae0f8648b9.ngrok.io')
 
 @Component({
   selector: 'app-my-modal',
@@ -20,6 +19,7 @@ export class MyModalPage implements OnInit {
   public modalTitle: string;
   public modelId: number;
   public ticket: any;
+  public codigo: string = ''
 
   public background: string = '../../assets/img/qr.jpg'
   public consumed: Boolean = false;
@@ -27,7 +27,9 @@ export class MyModalPage implements OnInit {
   public generated = '';
   public spinner: Boolean = true;
 
-  private chat: any;
+  public chat;
+
+  public looping;
 
   constructor(
     private modalController: ModalController,
@@ -35,7 +37,8 @@ export class MyModalPage implements OnInit {
     private ticketService: TicketService,
     private toastProvide: ToastProvider,
   ) {
-    ws.connect()
+    ws.connect();
+    this.chat = ws.subscribe('chat')
   }
 
   ngOnInit() {
@@ -47,12 +50,20 @@ export class MyModalPage implements OnInit {
   }
 
   ionViewWillEnter() {
+    this.subscribeToChannel()
+  }
 
-    this.chat = ws.subscribe('chat')
-    this.chatOnReady()
+  subscribeToChannel() {
+    let chat = this.chat;
+    chat.on('error', (error) => {
+      console.log(error)
+    })
+    chat.on('ready', () => {
+      this.chat.emit('message', 'user-loged')
+    })
 
-    this.chat.on('message', function (message) {
-      if (message == 'used') {
+    chat.on('message', function (message) {
+      if (message == 'USED') {
         setTimeout(() => {
           document.getElementById('not-consumed').classList.add('set-opacity');
           document.getElementById('consumed').classList.add('remove-opacity');
@@ -71,16 +82,15 @@ export class MyModalPage implements OnInit {
     })
   }
 
-  //socket functions
-  chatOnReady() {
-    this.chat.on('ready', () => {
-      this.chat.emit('message', 'user-loged')
-    })
+  teste() {
+    this.chat.emit('message', 'user-loged')
   }
 
   getTicket(id) {
     this.ticketService.getTicketById(id).subscribe((res: any) => {
       this.ticket = res;
+      this.codigo = this.ticket.codigo;
+      this.verifyConsummer(this.codigo);
       this.process(res.codigo)
 
     }, error => {
@@ -98,7 +108,40 @@ export class MyModalPage implements OnInit {
     })
   }
 
+
+  verifyConsummer(codigo) {
+    this.looping = setInterval(() => {
+      this.ticketService.verifyConsumer(codigo).subscribe((res: any) => {
+        console.log(res)
+        if (res.message == 'USED') {
+          setTimeout(() => {
+            document.getElementById('not-consumed').classList.add('set-opacity');
+            document.getElementById('consumed').classList.add('remove-opacity');
+
+            setTimeout(() => {
+              document.getElementById('consumed').classList.remove('remove-opacity');
+              document.getElementById('crap').classList.add('flip-efect');
+
+            }, 1000)
+            setTimeout(() => {
+              document.getElementById('crap').classList.add('set-opacity-crap');
+            }, 1500)
+
+          }, 5000)
+        }
+
+      }, error => {
+        console.log(error)
+      })
+
+    }, 3000)
+  }
+
+
+
+
   async closeModal() {
+    clearInterval(this.looping);
     const onClosedData: string = "Wrapped Up!";
     await this.modalController.dismiss(onClosedData);
   }

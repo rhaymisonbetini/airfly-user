@@ -3,8 +3,8 @@
   <div id="ticket">
     <div class="main">
 
-      <ng-container *ngIf="!spinner; notQrCodeBlock">
-        <img [src]="generated" alt="">
+      <ng-container *ngIf="!spinner && ticket; notQrCodeBlock">
+        <img [src]="generated" alt="" (click)="teste()">
         <h4>Aeronave: {{ticket.aeronave}}</h4>
         <h4>Origem: {{ticket.origem}}</h4>
         <h4>Destino: {{ticket.destino}}</h4>
@@ -15,7 +15,7 @@
 
     </div>
 
-    <div id="crap" class="main-base " >
+    <div id="crap" class="main-base " *ngIf="!ticket?.is_used" >
       <h1  id="not-consumed">Ticket de embarque</h1>
       <h1  id="consumed">Consumido!</h1>
     </div>

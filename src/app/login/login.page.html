@@ -3,8 +3,7 @@
   <div id="login">
     <form action="" [formGroup]="loginForm">
       <ion-item>
-        <ion-label position="stacked">E-mail</ion-label>
-        <ion-input type="email" formControlName="email"></ion-input>
+        <ion-input placeholder="E-mail" type="email" formControlName="email"></ion-input>
       </ion-item>
 
       <app-message-erro-validacao *ngIf="loginForm.controls['email'].errors?.required 
@@ -15,8 +14,7 @@
 
 
       <ion-item>
-        <ion-label position="stacked">Password</ion-label>
-        <ion-input type="password" formControlName="password"></ion-input>
+        <ion-input placeholder="Senha" type="password" formControlName="password"></ion-input>
       </ion-item>
 
       <app-message-erro-validacao *ngIf="loginForm.controls['password'].errors?.required 

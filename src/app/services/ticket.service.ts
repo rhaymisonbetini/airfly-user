@@ -46,4 +46,15 @@ export class TicketService {
     return this.http.get(this.api.url + `count`, header);
   }
 
+  verifyConsumer(id) {
+    let header: any = {
+      headers: new HttpHeaders({
+        Authorization: sessionStorage.getItem('token'),
+        Email: localStorage.getItem('email'),
+        id: sessionStorage.getItem('id')
+      })
+    }
+    return this.http.get(this.api.url + `verify-consumer/${id}`, header);
+  }
+
 }

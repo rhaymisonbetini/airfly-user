@@ -7,7 +7,7 @@ import { TicketService } from 'src/app/services/ticket.service';
 
 import "babel-polyfill";
 import Ws from '@adonisjs/websocket-client'
-const ws = Ws('ws://86ae0f8648b9.ngrok.io')
+const ws = Ws('ws://localhost:3333')
 
 @Component({
   selector: 'app-my-modal',
@@ -90,7 +90,6 @@ export class MyModalPage implements OnInit {
     this.ticketService.getTicketById(id).subscribe((res: any) => {
       this.ticket = res;
       this.codigo = this.ticket.codigo;
-      this.verifyConsummer(this.codigo);
       this.process(res.codigo)
 
     }, error => {
@@ -109,38 +108,38 @@ export class MyModalPage implements OnInit {
   }
 
 
-  verifyConsummer(codigo) {
-    this.looping = setInterval(() => {
-      this.ticketService.verifyConsumer(codigo).subscribe((res: any) => {
-        console.log(res)
-        if (res.message == 'USED') {
-          setTimeout(() => {
-            document.getElementById('not-consumed').classList.add('set-opacity');
-            document.getElementById('consumed').classList.add('remove-opacity');
+  // verifyConsummer(codigo) {
+  //   this.looping = setInterval(() => {
+  //     this.ticketService.verifyConsumer(codigo).subscribe((res: any) => {
+  //       console.log(res)
+  //       if (res.message == 'USED') {
+  //         setTimeout(() => {
+  //           document.getElementById('not-consumed').classList.add('set-opacity');
+  //           document.getElementById('consumed').classList.add('remove-opacity');
 
-            setTimeout(() => {
-              document.getElementById('consumed').classList.remove('remove-opacity');
-              document.getElementById('crap').classList.add('flip-efect');
+  //           setTimeout(() => {
+  //             document.getElementById('consumed').classList.remove('remove-opacity');
+  //             document.getElementById('crap').classList.add('flip-efect');
 
-            }, 1000)
-            setTimeout(() => {
-              document.getElementById('crap').classList.add('set-opacity-crap');
-            }, 1500)
+  //           }, 1000)
+  //           setTimeout(() => {
+  //             document.getElementById('crap').classList.add('set-opacity-crap');
+  //           }, 1500)
 
-          }, 5000)
-        }
+  //         }, 5000)
+  //       }
 
-      }, error => {
-        console.log(error)
-      })
+  //     }, error => {
+  //       console.log(error)
+  //     })
 
-    }, 3000)
-  }
-
+  //   }, 1500)
+  // }
 
 
 
   async closeModal() {
+    ws.close()
     clearInterval(this.looping);
     const onClosedData: string = "Wrapped Up!";
     await this.modalController.dismiss(onClosedData);
